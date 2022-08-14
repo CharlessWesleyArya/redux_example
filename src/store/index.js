@@ -1,3 +1,11 @@
-import { configureStore } from "redux";
+import { createStore } from "redux";
 
-const reducersFn = (state, action) => {};
+const reducersFn = (state = { counter: 0 }, action) => {
+  //Synchronous Funtion
+  //we should not mutate the original state
+  return state;
+};
+
+const store = createStore(reducersFn);
+
+export default store;
