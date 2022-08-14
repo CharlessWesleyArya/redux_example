@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+/* import { createStore } from "redux";
 
 const reducersFn = (state = { counter: 0 }, action) => {
   //Synchronous Funtion
@@ -16,5 +16,27 @@ const reducersFn = (state = { counter: 0 }, action) => {
 };
 
 const store = createStore(reducersFn);
+ */
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: { counter: 0 },
+  reducers: {
+    increment(state, action) {
+      state.counter++;
+    },
+    decrement(state, action) {
+      state.counter--;
+    },
+    addBy(state, action) {
+      //state.counter+=10
+      state.counter += action.payload;
+    },
+  },
+});
+export const actions = counterSlice.actions;
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
 export default store;
